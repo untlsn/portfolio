@@ -10,7 +10,7 @@ const autoScroll = computed(() => {
   <div>
     <HomeHeader />
     <main class="max-w-7xl mx-auto border-x-2 py-12">
-      <div class="flex px-12">
+      <div class="grid lg:grid-cols-3 px-12">
         <h1 class="text-4xl mt-12 text-blue-400">
           {{ $t('welcome-message') }}
         </h1>
@@ -18,11 +18,11 @@ const autoScroll = computed(() => {
           name="my:title-image"
           class="text-[16rem] mx-auto w-[1em] block my-12"
         />
-        <p class="text-2xl mb-12 self-end text-vaporware-900">
+        <p class="text-2xl mb-12 ml-auto self-end text-vaporware-900">
           Web developer
         </p>
       </div>
-      <div class="grid grid-cols-2 border-y">
+      <div class="grid lg:grid-cols-2 border-y">
         <article class="py-6 px-12">
           <header class="text-3xl my-4 text-blue-400">
             {{ $t('dev-desc.0') }}
@@ -62,7 +62,7 @@ const autoScroll = computed(() => {
         <HomeGradientTitle>
           Frontend:
         </HomeGradientTitle>
-        <div class="grid grid-cols-2">
+        <div class="grid lg:grid-cols-2">
           <IconButtonList
             :list="[
               { label: 'NuxtJS', href: 'https://nuxt.com/', icon: 'devicon:nuxtjs' },
@@ -126,7 +126,7 @@ const autoScroll = computed(() => {
             Frontend Mentor
           </header>
           <UCarousel
-            :ui="{ item: 'basis-1/5 self-center' }"
+            :ui="{ item: 'basis-1/2 lg:basis-1/5 self-center' }"
             loop
             :auto-scroll
             :items="[

@@ -3,10 +3,6 @@
 
 @theme static {
   --font-sans: 'Public Sans', sans-serif;
-
-  --ui-bg: #14041B;
-  --ui-text: #FFFFF8;
-
   --color-vaporware-100: #13031a;
   --color-vaporware-200: #30032a;
   --color-vaporware-300: #4d023a;
@@ -20,4 +16,9 @@
 
 :where(*) {
   border-color: color-mix(in oklab, var(--color-vaporware-600) 60%, transparent);
+}
+
+:root {
+  --ui-bg: #14041B;
+  --ui-text: #FFFFF8;
 }

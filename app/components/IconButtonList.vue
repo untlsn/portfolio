@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { animate, createScope, stagger } from 'animejs';
+import { animate, stagger } from 'animejs';
 
 const props = defineProps<{
   list:   { icon: string; label: string; href: string }[];
@@ -8,7 +8,7 @@ const props = defineProps<{
 
 useAnimeScopeSafe(useTemplateRef('buttons-root'), () => {
   animate('a', {
-    x:        stagger(props.right ? '-6rem' : '6rem'),
+    x:        stagger(props.right ? '-5rem' : '5rem'),
     delay:    stagger(100),
     duration: stagger(200, { start: 500 }),
   });
@@ -36,14 +36,14 @@ useAnimeScopeSafe(useTemplateRef('buttons-root'), () => {
         :key="name"
         variant="outline"
         :style="{ '--index': props.right ? list.length - i - 1 : -i }"
-        class="text-white motion-safe:translate-x-[calc(var(--index)*6rem)] relative group"
+        class="text-white motion-safe:translate-x-[calc(var(--index)*5rem)] relative group"
         :aria-label="label"
         target="_blank"
         :href
       >
         <UIcon
           :name
-          class="text-[4rem] size-16"
+          class="text-[4rem] size-12"
         />
         <span class="absolute top-full w-16 text-center -translate-y-5 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
           {{ label }}
