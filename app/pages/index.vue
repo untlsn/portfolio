@@ -98,7 +98,7 @@ const autoScroll = computed(() => {
           <header class="text-2xl px-12 py-6 text-blue-400">
             {{ $t('project-types.internal') }}
           </header>
-          <p class="px-12">
+          <div class="px-12">
             <UAccordion
               class="border-1 px-4"
               type="multiple"
@@ -119,7 +119,7 @@ const autoScroll = computed(() => {
                 </p>
               </template>
             </UAccordion>
-          </p>
+          </div>
         </section>
         <section>
           <header class="text-2xl px-12 py-6 text-right text-vaporware-900">
