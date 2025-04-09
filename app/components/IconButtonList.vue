@@ -1,8 +1,18 @@
 <script lang="ts" setup>
-defineProps<{
-  list:   string[];
+import { animate, createScope, stagger } from 'animejs';
+
+const props = defineProps<{
+  list:   { icon: string; label: string; href: string }[];
   right?: boolean;
 }>();
+
+useAnimeScopeSafe(useTemplateRef('buttons-root'), () => {
+  animate('a', {
+    x:        stagger(props.right ? '-6rem' : '6rem'),
+    delay:    stagger(100),
+    duration: stagger(200, { start: 500 }),
+  });
+});
 </script>
 
 <template>
@@ -17,19 +27,27 @@ defineProps<{
       <slot />
     </header>
     <div
-      class="flex gap-2 ml-2 w-min"
+      ref="buttons-root"
+      class="flex gap-3 ml-2 w-min"
       :class="right && 'ml-auto'"
     >
       <UButton
-        v-for="name in list"
+        v-for="({ icon: name, label, href }, i) in list"
         :key="name"
         variant="outline"
-        class="text-white"
+        :style="{ '--index': props.right ? list.length - i - 1 : -i }"
+        class="text-white motion-safe:translate-x-[calc(var(--index)*6rem)] relative group"
+        :aria-label="label"
+        target="_blank"
+        :href
       >
         <UIcon
           :name
-          class="text-[4rem]"
+          class="text-[4rem] size-16"
         />
+        <span class="absolute top-full w-16 text-center -translate-y-5 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+          {{ label }}
+        </span>
       </UButton>
     </div>
   </section>

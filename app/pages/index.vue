@@ -1,4 +1,9 @@
 <script setup lang="ts">
+const autoScroll = computed(() => {
+  return import.meta.browser
+    && window.matchMedia('(prefers-reduced-motion: no-preference)').matches
+    && { stopOnMouseEnter: true, stopOnInteraction: false, startDelay: 0 };
+});
 </script>
 
 <template>
@@ -58,14 +63,26 @@
           Frontend:
         </HomeGradientTitle>
         <div class="grid grid-cols-2">
-          <IconButtonList :list="['devicon:nuxtjs', 'devicon:nextjs', 'devicon:solidjs', 'devicon:nestjs']">
-            Frameworks:
+          <IconButtonList
+            :list="[
+              { label: 'NuxtJS', href: 'https://nuxt.com/', icon: 'devicon:nuxtjs' },
+              { label: 'NextJS', href: 'https://nextjs.org/', icon: 'devicon:nextjs' },
+              { label: 'SolidJS', href: 'https://docs.solidjs.com/', icon: 'devicon:solidjs' },
+              { label: 'NestJS', href: 'https://nestjs.com/', icon: 'devicon:nestjs' },
+            ]"
+          >
+            {{ $t('frameworks') }}:
           </IconButtonList>
           <IconButtonList
             right
-            :list="['devicon:tailwindcss', 'devicon:chartjs', 'simple-icons:clerk', 'devicon:trpc']"
+            :list="[
+              { label: 'Tailwind', href: 'https://tailwindcss.com/', icon: 'devicon:tailwindcss' },
+              { label: 'ChartJS', href: 'https://www.chartjs.org/', icon: 'devicon:chartjs' },
+              { label: 'Clerk', href: 'https://clerk.com/', icon: 'simple-icons:clerk' },
+              { label: 'tRPC', href: 'https://trpc.io/', icon: 'devicon:trpc' },
+            ]"
           >
-            {{ $t('additional-technologies') }}
+            {{ $t('additional-technologies') }}:
           </IconButtonList>
         </div>
         <section class="border-y py-6 px-12 space-y-4">
@@ -111,7 +128,7 @@
           <UCarousel
             :ui="{ item: 'basis-1/5 self-center' }"
             loop
-            :auto-scroll="{ stopOnMouseEnter: true, stopOnInteraction: false, startDelay: 0 }"
+            :auto-scroll
             :items="[
               { image: '/screens/frontend-mentor-1.png', link: 'https://www.frontendmentor.io/solutions/nuxt3-with-unocss-cgrYMGG-yq' },
               { image: '/screens/frontend-mentor-2.png', link: 'https://www.frontendmentor.io/solutions/solidstart-static-with-unocss-NskJDyVfG-' },

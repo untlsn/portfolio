@@ -48,5 +48,6 @@
   "project-types": {
     "generic": "Projekty",
     "internal": "Wewnętrzne projekty"
-  }
+  },
+  "frameworks": "Frameworki"
 }

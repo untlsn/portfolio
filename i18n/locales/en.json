@@ -48,5 +48,6 @@
   "project-types": {
     "generic": "Projects",
     "internal": "Internal projects"
-  }
+  },
+  "frameworks": "Frameworks"
 }
