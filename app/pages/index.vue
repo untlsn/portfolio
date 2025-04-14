@@ -62,7 +62,7 @@ const autoScroll = computed(() => {
         <HomeGradientTitle>
           Frontend:
         </HomeGradientTitle>
-        <div class="grid lg:grid-cols-2">
+        <div class="grid grid-cols-2 items-end">
           <IconButtonList
             :list="[
               { label: 'NuxtJS', href: 'https://nuxt.com/', icon: 'devicon:nuxtjs' },

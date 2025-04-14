@@ -1,18 +1,8 @@
 <script lang="ts" setup>
-import { animate, stagger } from 'animejs';
-
-const props = defineProps<{
+defineProps<{
   list:   { icon: string; label: string; href: string }[];
   right?: boolean;
 }>();
-
-useAnimeScopeSafe(useTemplateRef('buttons-root'), () => {
-  animate('a', {
-    x:        stagger(props.right ? '-5rem' : '5rem'),
-    delay:    stagger(100),
-    duration: stagger(200, { start: 500 }),
-  });
-});
 </script>
 
 <template>
@@ -28,15 +18,15 @@ useAnimeScopeSafe(useTemplateRef('buttons-root'), () => {
     </header>
     <div
       ref="buttons-root"
-      class="flex gap-3 ml-2 w-min"
-      :class="right && 'ml-auto'"
+      class="flex gap-4 ml-2 w-min max-lg:flex-col"
+      :class="right && 'ml-auto flex-row-reverse'"
     >
       <UButton
         v-for="({ icon: name, label, href }, i) in list"
         :key="name"
         variant="outline"
-        :style="{ '--index': props.right ? list.length - i - 1 : -i }"
-        class="text-white motion-safe:translate-x-[calc(var(--index)*5rem)] relative group"
+        :style="{ 'animation-duration': `${i * .2}s`, '--translate-x': `${(right ? i : -i) * 5}rem`, '--translate-y': `${i * -5}rem` }"
+        class="text-white size-16 relative group move lg:motion-safe:translate-x-(--translate-x) max-lg:motion-safe:translate-y-(--translate-y)"
         :aria-label="label"
         target="_blank"
         :href
@@ -45,7 +35,7 @@ useAnimeScopeSafe(useTemplateRef('buttons-root'), () => {
           :name
           class="text-[4rem] size-12"
         />
-        <span class="absolute top-full w-16 text-center -translate-y-5 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+        <span class="absolute top-full left-0 w-16 text-center -translate-y-5 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
           {{ label }}
         </span>
       </UButton>
@@ -54,5 +44,13 @@ useAnimeScopeSafe(useTemplateRef('buttons-root'), () => {
 </template>
 
 <style scoped>
+@keyframes move {
+  to {translate: 0 }
+}
 
+@media (prefers-reduced-motion: no-preference) {
+  .move {
+    animation: move linear forwards;
+  }
+}
 </style>

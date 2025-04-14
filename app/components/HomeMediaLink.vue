@@ -7,7 +7,10 @@ defineProps<{
 
 <template>
   <p>
-    <NuxtLink :href>
+    <NuxtLink
+      :href
+      target="_blank"
+    >
       <UIcon :name="icon" />
       <span><slot /></span>
     </NuxtLink>
